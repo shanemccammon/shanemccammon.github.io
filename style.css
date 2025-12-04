@@ -73,7 +73,7 @@ h1, h2 {
 }
 .about-layout {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
 }
 
