@@ -116,6 +116,13 @@ h1, h2 {
     margin: 0.35rem auto 0.5rem;  /* small space above & below, centered */
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+.board1-thumb {
+    width: auto;
+    height: auto;
+    max-width: 140px;
+    max-height: 120px;
+    object-fit: contain;  /* show whole image inside box if you keep width/height */
+}
 
 .button:hover {
     background: #3C6E71;
