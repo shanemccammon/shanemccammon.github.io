@@ -71,6 +71,20 @@ section {
 h1, h2 {
     font-weight: 700;
 }
+.about-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
 .button {
     display: inline-block;
@@ -109,4 +123,11 @@ footer {
 @media (max-width: 500px) {
     header h1 { font-size: 2.2rem; }
     section { padding: 1rem; }
+
+    .about-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }
+
