@@ -109,8 +109,9 @@ h1, h2 {
 }
 .resource-thumb {
     display: block;
-    max-width: 140px;
-    height: auto;
+        width: 90px;          /* fixed small width */
+    height: 90px;         /* fixed small height */
+    object-fit: cover;
     border-radius: 6px;
     margin: 0.35rem auto 0.5rem;  /* small space above & below, centered */
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
