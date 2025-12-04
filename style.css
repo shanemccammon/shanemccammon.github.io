@@ -75,6 +75,11 @@ section {
 h1, h2 {
     font-weight: 700;
 }
+
+#about h2 {
+    text-align: center;
+}
+
 .about-layout {
     display: flex;
     align-items: center;
