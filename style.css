@@ -68,8 +68,8 @@ section {
     box-shadow: 0 2px 8px rgba(44,62,80,.07);
 }
 #about {
-    padding-top: 3rem;
-    padding-bottom: 3rem;   /* increase just this section’s height */
+    padding-top: 1rem;
+    padding-bottom: 1rem;   /* increase just this section’s height */
 }
 
 h1, h2 {
