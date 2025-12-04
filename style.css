@@ -119,8 +119,8 @@ h1, h2 {
 .board1-thumb {
     width: auto;
     height: auto;
-    max-width: 140px;
-    max-height: 120px;
+    max-width: 250px;
+    max-height: 250px;
     object-fit: contain;  /* show whole image inside box if you keep width/height */
 }
 
