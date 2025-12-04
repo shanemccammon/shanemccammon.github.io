@@ -67,6 +67,10 @@ section {
     padding: 2rem 1.5rem;
     box-shadow: 0 2px 8px rgba(44,62,80,.07);
 }
+#about {
+    padding-top: 3rem;
+    padding-bottom: 3rem;   /* increase just this section’s height */
+}
 
 h1, h2 {
     font-weight: 700;
