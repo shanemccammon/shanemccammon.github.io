@@ -5,35 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shane McCammon Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-    <style>
-      /* Added image thumb class for resizing */
-      .project-image-thumb {
-        max-width: 300px;
-        height: auto;
-        margin: 10px 0;
-        display: block;
-        border-radius: 8px;
-      }
-    </style>
 </head>
 <body>
     <header class="hero-header">
         <div class="overlay"></div>
         <div class="container hero-content">
+            <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">
+                ☰
+            </button>
             <h1>Shane McCammon</h1>
             <p class="subtitle">University of Colorado Boulder</p>
             <p class="subsubtitle">Electrical and Energy Engineering</p>
         </div>
     </header>
+
+    <!-- Sidebar navigation -->
+    <nav id="sidebar" class="sidebar" aria-label="Primary">
+        <div class="sidebar-inner">
+            <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
+            <ul class="sidebar-nav">
+                <li><a href="#about" data-target="about">About</a></li>
+                <li><a href="#resume" data-target="resume">Resume</a></li>
+                <li><a href="#projects" data-target="projects">Projects</a></li>
+                <li><a href="#contact" data-target="contact">Contact</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <small>&copy; 2025 Shane McCammon</small>
+            </div>
+        </div>
+    </nav>
+
     <main>
         <section id="about" class="container">
             <h2>About Me</h2>
              <div class="about-layout">
             <img src="profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
             <p>
-            I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending CU, I spent 7 years in the United States Army. 
-
+                I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending CU, I [...]
             </p>
              </div> 
         </section>
@@ -44,80 +54,63 @@
         </section>
 
         <section id="projects" class="container">
-            <!-- Renamed overall section -->
             <h2>Projects</h2>
 
-            <!-- Your original PCB section kept as a subsection -->
             <h3>PCB Design and Manufacturing Project Reports</h3>
             <ul class="projects-list">
                 <li>
                     <p class="button-description">
         Board 1: Astable 555 Timer
     </p>
-                    <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb board1-thumb project-image-thumb">
+                    <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb board1-thumb">
                     <a href="McCammon_Brd1_Report.pdf" target="_blank" class="button">Board 1 Report (PDF)</a>
                 </li>
                 <li>
                     <p class="button-description">
         Board 2: Good vs Bad Layout Demonstration (Hex Inverters)
     </p>
-                    <img src="board2.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
+                    <img src="board2.jpg" alt="Board 1 PCB layout" class="resource-thumb">
                     <a href="McCammon_Brd2_Report.pdf" target="_blank" class="button">Board 2 Report (PDF)</a>
                 </li>
                 <li>
                     <p class="button-description">
         Board 3: The "Golden Arduino" - A custom arduino board designed to optimize noise performance and reduce EMI
     </p>
-                    <img src="board3.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
+                    <img src="board3.jpg" alt="Board 1 PCB layout" class="resource-thumb">
                     <a href="McCammon_Brd3_Report (1).pdf" target="_blank" class="button">Board 3 Report (PDF)</a>
                 </li>
             </ul>
 
-            <!-- New lab/project subsections -->
-            <h3>Power Electronics</h3>
-            <p class="button-description">
-                As the follow up course for Intro to Power Electronics, this lab focused on developing a power conditioning system (buck converter, boost converter and inverter) for an 85W PV Panel. This system also implemented Maximum Power Point Tracking (MPPT) through a microcontroller.
-            </p>
-            <!-- Added Power Electronics images -->
-            <img src="power1.jpg" alt="Power electronics project 1" class="project-image-thumb">
-            <img src="power2.jpg" alt="Power electronics project 2" class="project-image-thumb">
-            <img src="power3.jpg" alt="Power electronics project 3" class="project-image-thumb">
-           
             <h3>EDL</h3>
             <p class="button-description">
                 In Electronics Design Lab I developed a bluetooth controlled rover with custom PID motor control.
             </p>
-            <!-- Added EDL images -->
-            <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
-            <img src="edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
-
             <h3>Application of Embedded Systems</h3>
             <p class="button-description">
-                This course explored embedded systems and many potential applications. Below is my final project which was a photoresistive circuit that activates in low-light conditions. This was also my first custom PCB design.
+                This course explored embedded systems and many potential applications. Below is my final project which was a photoresistive circuit that activates in low-light conditions. This was als[...]
             </p>
-            <!-- Added image for embedded systems section -->
-            <img src="pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
+
+            <h3>Embedded AI</h3>
+            <p class="button-description">
+                An introductory course into applications of AI in embedded systems. We explored building, training, and quantizing various different TensorFLowLite models as well as exploring their st[...]
+            </p>
 
             <h3>Experimental Physics</h3>
             <p class="button-description">
-                For this course I had the pleasure of participating in research concerning Coronal Heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. A link to the publication can be found below:
+                For this course I had the pleasure of participating in research concerning Coronal Heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. [...]
                 https://iopscience.iop.org/article/10.3847/1538-4357/accc89
             </p>
-            <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" class="button">View Published Paper</a>
-            
-            <h3>Embedded AI</h3>
+
+            <h3>Power Electronics</h3>
             <p class="button-description">
-                An introductory course into applications of AI in embedded systems. We explored building, training, and quantizing various different TensorFLowLite models as well as exploring their structure. The github repo of my projects can be found below:
+                As the follow up course for Intro to Power Electronics, this lab focused on developing a power conditioning system (buck converter, boost converter and inverter) for an 85W PV Panel. T[...]
             </p>
-            <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" class="button">Embedded AI GitHub Repo</a>
-
-
         </section>
 
         <section id="contact" class="container">
             <h2>Contact</h2>
             <p>
-                Email: <a href="mailto:your@email.com">shanemccammon.ee@gmail.com</a>
+                Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
             </p>
         </section>
     </main>
@@ -126,5 +119,7 @@
             <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="sidebar.js" defer></script>
 </body>
 </html>
