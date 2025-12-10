@@ -88,7 +88,8 @@ body {
 
 /* Top-level links/buttons */
 .sidebar-nav a,
-.sidebar-nav .submenu-toggle {
+.sidebar-nav .submenu-toggle,
+.sidebar-nav .projects-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -108,13 +109,16 @@ body {
 .sidebar-nav a:hover,
 .sidebar-nav a:focus,
 .sidebar-nav .submenu-toggle:hover,
-.sidebar-nav .submenu-toggle:focus {
+.sidebar-nav .submenu-toggle:focus,
+.sidebar-nav .projects-toggle:hover,
+.sidebar-nav .projects-toggle:focus {
   background: rgba(255,255,255,0.04);
   outline: none;
 }
 
-/* Submenu styles */
-.submenu {
+/* Submenu styles (existing .submenu kept for backward compatibility) */
+.submenu,
+.sidebar-submenu {
   list-style: none;
   padding-left: 0.5rem;
   margin: 0.5rem 0 0 0;
@@ -125,7 +129,8 @@ body {
 }
 
 /* Submenu items */
-.submenu li a {
+.submenu li a,
+.sidebar-submenu li a {
   padding: 0.45rem 0.75rem;
   font-size: 0.95rem;
   display: block;
@@ -133,7 +138,8 @@ body {
 
 /* When submenu is open */
 .has-submenu.open .submenu,
-.submenu.open {
+.submenu.open,
+.sidebar-submenu.open {
   max-height: 1000px; /* large enough to show all items */
   opacity: 1;
 }
@@ -144,9 +150,20 @@ body {
   transform: rotate(180deg);
 }
 
+/* Add caret style for projects toggle */
+.caret {
+  transition: transform 0.18s ease;
+  display: inline-block;
+  transform-origin: center;
+}
+.caret.open {
+  transform: rotate(90deg);
+}
+
 /* Active link */
 .sidebar-nav a.active,
-.submenu li a.active {
+.submenu li a.active,
+.sidebar-submenu li a.active {
   background: var(--accent);
   color: white;
   box-shadow: 0 4px 14px rgba(45,109,246,0.2);
@@ -190,3 +207,8 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
+/* Minor spacing */
+.sidebar-nav li { margin: 0.25rem 0; }
+
+/* If you have a dark sidebar ensure submenu contrast is OK - tweak colors there. */
