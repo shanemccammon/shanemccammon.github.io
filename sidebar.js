@@ -1,14 +1,14 @@
 // sidebar.js - supports:
-// - About & Resume anchors on index.html (smooth-scroll when on index).
-// - Projects dropdown (expand/collapse); submenu links navigate to individual pages.
-// - Highlights active top-level and submenu links.
-// - Handles toggle/overlay, close on small screens, Escape key.
+// - Home, Resume, Projects, and Contact navigation
+// - Resume and Contact anchors on index.html (smooth-scroll when on index)
+// - Projects link navigates to projects.html page
+// - Highlights active links
+// - Handles toggle/overlay, close on small screens, Escape key
 
 (function(){
   const sidebar = document.getElementById('sidebar');
   const toggle = document.getElementById('sidebarToggle');
   const closeBtn = document.getElementById('sidebarClose');
-  const submenuButtons = Array.from(document.querySelectorAll('.submenu-toggle'));
   const overlayClass = 'sidebar-overlay';
 
   // Ensure overlay exists
@@ -24,7 +24,7 @@
     sidebar.classList.add('open');
     overlay.classList.add('visible');
     if(toggle) toggle.setAttribute('aria-expanded','true');
-    const firstLink = sidebar.querySelector('.sidebar-nav a, .submenu-toggle');
+    const firstLink = sidebar.querySelector('.sidebar-nav a');
     if(firstLink) firstLink.focus();
     document.body.style.overflow = 'hidden';
   }
@@ -51,20 +51,6 @@
     if(e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
       closeSidebar();
     }
-  });
-
-  // Submenu toggle behavior
-  submenuButtons.forEach(btn => {
-    const parentLi = btn.closest('.has-submenu');
-    const submenu = parentLi ? parentLi.querySelector('.submenu') : null;
-    btn.addEventListener('click', (e) => {
-      const isOpen = parentLi.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-      if(submenu){
-        if(isOpen) submenu.classList.add('open');
-        else submenu.classList.remove('open');
-      }
-    });
   });
 
   // Utility: returns true if current page is the index/home page
@@ -106,7 +92,7 @@
     });
   });
 
-  // Highlight active links (top-level and submenu) by filename or hash
+  // Highlight active links by filename or hash
   function highlightActiveLink(){
     const currentFile = window.location.pathname.split('/').pop() || 'index.html';
     const currentHash = window.location.hash ? window.location.hash.slice(1) : '';
@@ -121,15 +107,6 @@
       if((normalizedLinkFile === 'index.html' || fullHref.startsWith('#')) && normalizedCurrent === 'index.html' && linkHash){
         if(linkHash === currentHash) {
           link.classList.add('active');
-          // also open submenu containing it (if any)
-          const parent = link.closest('.has-submenu');
-          if(parent) {
-            parent.classList.add('open');
-            const submenu = parent.querySelector('.submenu');
-            if(submenu) submenu.classList.add('open');
-            const btn = parent.querySelector('.submenu-toggle');
-            if(btn) btn.setAttribute('aria-expanded','true');
-          }
         } else link.classList.remove('active');
         return;
       }
@@ -137,41 +114,14 @@
       // Otherwise match by filename
       if(normalizedLinkFile === normalizedCurrent && (!linkHash || linkHash === '')) {
         link.classList.add('active');
-        // open submenu if link is inside one
-        const parent = link.closest('.has-submenu');
-        if(parent) {
-          parent.classList.add('open');
-          const submenu = parent.querySelector('.submenu');
-          if(submenu) submenu.classList.add('open');
-          const btn = parent.querySelector('.submenu-toggle');
-          if(btn) btn.setAttribute('aria-expanded','true');
-        }
       } else {
         link.classList.remove('active');
       }
     });
   }
 
-  // On load: if current page is a project page, open the Projects submenu so the active item is visible.
+  // On load: highlight active link
   document.addEventListener('DOMContentLoaded', () => {
-    // If current page is one of the project pages, ensure the projects submenu is open
-    const projectFiles = [
-      'projects.html','board1.html','board2.html','board3.html','edl.html',
-      'embedded-systems.html','embedded-ai.html','experimental-physics.html','power-electronics.html'
-    ];
-    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-    if(projectFiles.includes(currentFile)){
-      // find the parent .has-submenu
-      const parent = document.querySelector('.has-submenu');
-      if(parent){
-        parent.classList.add('open');
-        const submenu = parent.querySelector('.submenu');
-        if(submenu) submenu.classList.add('open');
-        const btn = parent.querySelector('.submenu-toggle');
-        if(btn) btn.setAttribute('aria-expanded','true');
-      }
-    }
-
     // If landing on index with hash, smooth-scroll to that section
     if(onIndexPage() && window.location.hash){
       const id = window.location.hash.slice(1);
