@@ -48,7 +48,7 @@
     </div>
   </header>
 
-  <!-- Sidebar navigation -->
+  <!-- Sidebar navigation (shared markup) -->
   <nav id="sidebar" class="sidebar" aria-label="Primary">
     <div class="sidebar-inner">
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
@@ -56,7 +56,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#resume">Resume</a></li>
 
-        <!-- Projects dropdown (only top-level project headers listed; individual boards omitted) -->
+        <!-- Projects dropdown (top-level project headers only) -->
         <li>
           <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
             Projects
@@ -65,13 +65,16 @@
 
           <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
             <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design &amp; Manufacturing</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics Lab</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#edl">Electronics Design Lab (EDL)</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Applications of Embedded Systems</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#edl">Entry, Descent, &amp; Landing (EDL)</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Application of Embedded Systems</a></li>
             <li role="none"><a role="menuitem" href="projects.html#experimental-physics">Experimental Physics</a></li>
             <li role="none"><a role="menuitem" href="projects.html#embedded-ai">Embedded AI</a></li>
           </ul>
         </li>
+
+        <!-- New Military link above Contact -->
+        <li><a href="military.html">Military</a></li>
 
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
@@ -127,7 +130,7 @@
 
       <!-- EDL -->
       <section id="edl" class="container">
-        <h3 id="edl-heading">Electronics Design Lab (EDL)</h3>
+        <h3 id="edl-heading">Entry, Descent, and Landing (EDL) / Electronics Design Lab</h3>
         <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PID motor control and other embedded systems features used for the EDL project.</p>
         <div class="project gallery">
           <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
@@ -160,7 +163,10 @@
 
     </section>
 
-
+    <section id="contact" class="container">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a></p>
+    </section>
   </main>
 
   <footer>
