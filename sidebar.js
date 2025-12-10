@@ -4,6 +4,7 @@
 // - Projects link navigates to projects.html page
 // - Highlights active links
 // - Handles toggle/overlay, close on small screens, Escape key
+// - Adds Projects dropdown behavior (open/close, keyboard focusout, close on sidebar close)
 
 (function(){
   const sidebar = document.getElementById('sidebar');
@@ -34,6 +35,15 @@
     overlay.classList.remove('visible');
     if(toggle) toggle.setAttribute('aria-expanded','false');
     document.body.style.overflow = '';
+    // If projects submenu is open, close it as well
+    const projectsSubmenu = document.getElementById('projects-submenu');
+    const projectsToggle = document.getElementById('projectsToggle');
+    const projectsCaret = document.getElementById('projectsCaret');
+    if(projectsSubmenu && projectsSubmenu.classList.contains('open')){
+      projectsSubmenu.classList.remove('open');
+    }
+    if(projectsToggle) projectsToggle.setAttribute('aria-expanded','false');
+    if(projectsCaret) projectsCaret.classList.remove('open');
     if(toggle) toggle.focus();
   }
 
@@ -119,6 +129,53 @@
       }
     });
   }
+
+  // Projects dropdown: toggle behavior and focus handling
+  (function initProjectsDropdown(){
+    const projectsToggle = document.getElementById('projectsToggle');
+    const projectsSubmenu = document.getElementById('projects-submenu');
+    const projectsCaret = document.getElementById('projectsCaret');
+
+    if(!projectsToggle || !projectsSubmenu) return;
+
+    // Toggle open/close
+    projectsToggle.addEventListener('click', (e) => {
+      const isOpen = projectsToggle.getAttribute('aria-expanded') === 'true';
+      projectsToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      projectsSubmenu.classList.toggle('open', !isOpen);
+      if(projectsCaret) projectsCaret.classList.toggle('open', !isOpen);
+    });
+
+    // Close submenu if focus leaves it (improves keyboard behavior)
+    projectsSubmenu.addEventListener('focusout', function (e) {
+      // relatedTarget is the element receiving focus
+      const related = e.relatedTarget;
+      // If focus moved outside of submenu and not to the toggle, close submenu
+      if(!projectsSubmenu.contains(related) && related !== projectsToggle){
+        projectsSubmenu.classList.remove('open');
+        projectsToggle.setAttribute('aria-expanded', 'false');
+        if(projectsCaret) projectsCaret.classList.remove('open');
+      }
+    });
+
+    // When the sidebar closes, ensure submenu closes (handled in closeSidebar)
+    // Also close submenu when a submenu link is clicked (to improve small-screen UX)
+    const submenuLinks = Array.from(projectsSubmenu.querySelectorAll('a'));
+    submenuLinks.forEach(a => {
+      a.addEventListener('click', () => {
+        // if target is an in-page anchor and we're on that page, allow scrolling then close
+        if(window.innerWidth < 900) {
+          // small screens — close sidebar (this will also close submenu)
+          closeSidebar();
+        } else {
+          // desktop — just close the submenu visually
+          projectsSubmenu.classList.remove('open');
+          projectsToggle.setAttribute('aria-expanded','false');
+          if(projectsCaret) projectsCaret.classList.remove('open');
+        }
+      });
+    });
+  })();
 
   // On load: handle initial page state (smooth-scroll to hash if present, highlight active link)
   document.addEventListener('DOMContentLoaded', () => {
