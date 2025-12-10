@@ -1,0 +1,140 @@
+/* Basic sidebar styles and responsive behavior */
+/* You can merge these into style.css if preferred */
+
+:root{
+  --sidebar-width: 260px;
+  --accent: #2d6df6;
+  --bg: #0f1720;
+  --text: #f3f4f6;
+}
+
+body {
+  /* ensure main content can shift when sidebar opens on wide screens */
+  transition: margin-left 0.25s ease;
+}
+
+/* Toggle Button in header */
+.sidebar-toggle {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: rgba(0,0,0,0.4);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 0.6rem;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 50;
+}
+
+/* Sidebar base */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  max-width: 85%;
+  background: linear-gradient(180deg, #071029, #0b1622);
+  color: var(--text);
+  box-shadow: 2px 0 12px rgba(2,6,23,0.6);
+  transform: translateX(-110%);
+  transition: transform 0.28s ease;
+  z-index: 60;
+  overflow-y: auto;
+  will-change: transform;
+}
+
+/* open state */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* inner spacing */
+.sidebar-inner{
+  padding: 1rem 1rem 2rem 1rem;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* Close button */
+.sidebar-close {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  font-size: 1.6rem;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+/* nav items */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display:flex;
+  flex-direction:column;
+  gap: 0.25rem;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 0.65rem 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus {
+  background: rgba(255,255,255,0.04);
+  outline: none;
+}
+
+.sidebar-nav a.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 14px rgba(45,109,246,0.2);
+}
+
+/* Footer inside sidebar */
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Desktop: show pinned sidebar */
+@media (min-width: 900px) {
+  .sidebar {
+    transform: translateX(0);
+    position: fixed;
+  }
+  body {
+    margin-left: var(--sidebar-width);
+  }
+  .sidebar-toggle {
+    display: none; /* hide toggle on wide screens */
+  }
+}
+
+/* Small overlay to dim content when sidebar is open on small screens */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 55;
+}
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
