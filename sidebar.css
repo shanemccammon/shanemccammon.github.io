@@ -190,6 +190,11 @@ body {
   .sidebar-toggle {
     display: none; /* hide toggle on wide screens */
   }
+
+  /* Hide the close button on desktop/pinned sidebar since it has no effect */
+  .sidebar-close {
+    display: none;
+  }
 }
 
 /* Small overlay to dim content when sidebar is open on small screens */
