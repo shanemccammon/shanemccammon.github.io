@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - Shane McCammon Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sidebar.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero-header">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+      <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <h1>Shane McCammon</h1>
+      <p class="subtitle">Projects</p>
+    </div>
+  </header>
+
+  <!-- Sidebar navigation -->
+  <nav id="sidebar" class="sidebar" aria-label="Primary">
+    <div class="sidebar-inner">
+      <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
+      <ul class="sidebar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#resume">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <small>&copy; 2025 Shane McCammon</small>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Project 1: Board 1 -->
+    <section id="board1" class="container">
+      <h2>Board 1: Astable 555 Timer</h2>
+      <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb">
+      <p class="button-description">
+        Astable 555 Timer
+      </p>
+      <a href="McCammon_Brd1_Report.pdf" target="_blank" class="button">View Board 1 Report (PDF)</a>
+    </section>
+
+    <!-- Project 2: Board 2 -->
+    <section id="board2" class="container">
+      <h2>Board 2: Good vs Bad Layout Demonstration</h2>
+      <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb">
+      <p class="button-description">
+        Good vs Bad Layout Demonstration (Hex Inverters)
+      </p>
+      <a href="McCammon_Brd2_Report.pdf" target="_blank" class="button">View Board 2 Report (PDF)</a>
+    </section>
+
+    <!-- Project 3: Board 3 -->
+    <section id="board3" class="container">
+      <h2>Board 3: The "Golden Arduino"</h2>
+      <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb">
+      <p class="button-description">
+        The "Golden Arduino" - A custom arduino board designed to optimize noise performance and reduce EMI
+      </p>
+      <a href="McCammon_Brd3_Report (1).pdf" target="_blank" class="button">View Board 3 Report (PDF)</a>
+    </section>
+
+    <!-- Project 4: EDL -->
+    <section id="edl" class="container">
+      <h2>Entry, Descent, and Landing Project</h2>
+      <img src="edl.jpg" alt="EDL project" class="resource-thumb">
+      <p class="button-description">
+        Entry, Descent, and Landing System
+      </p>
+    </section>
+
+    <!-- Project 5: Power Electronics -->
+    <section id="power" class="container">
+      <h2>Power Electronics Project</h2>
+      <img src="power1.jpg" alt="Power electronics project" class="resource-thumb">
+      <p class="button-description">
+        Power Electronics Design and Implementation
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="sidebar.js" defer></script>
+</body>
+</html>
