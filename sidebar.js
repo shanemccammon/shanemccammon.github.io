@@ -4,7 +4,7 @@
 // - Projects link navigates to projects.html page
 // - Highlights active links
 // - Handles toggle/overlay, close on small screens, Escape key
-// - Adds Projects dropdown behavior (open/close, keyboard focusout, close on sidebar close)
+// - Ensures a single Military link is present in the sidebar nav (inserted before Contact)
 
 (function(){
   const sidebar = document.getElementById('sidebar');
@@ -18,6 +18,39 @@
     overlay = document.createElement('div');
     overlay.className = overlayClass;
     document.body.appendChild(overlay);
+  }
+
+  // Insert a single "Military" link into any sidebar nav, before the Contact link.
+  // This avoids editing every HTML file; it will only run on pages that already include the sidebar markup.
+  function ensureMilitaryLink(){
+    const sidebarNav = document.querySelector('.sidebar-nav');
+    if(!sidebarNav) return;
+    // avoid adding multiple times
+    if(sidebarNav.querySelector('a[href="military.html"]')) return;
+
+    const militaryLi = document.createElement('li');
+    const militaryA = document.createElement('a');
+    militaryA.href = 'military.html';
+    militaryA.textContent = 'Military';
+    militaryLi.appendChild(militaryA);
+
+    // try to find the Contact link to insert before
+    const allLinks = Array.from(sidebarNav.querySelectorAll('a'));
+    let contactLi = null;
+    for (const a of allLinks) {
+      const href = (a.getAttribute('href') || '').trim();
+      if(href.includes('#contact') || (a.textContent || '').trim().toLowerCase() === 'contact') {
+        contactLi = a.parentElement;
+        break;
+      }
+    }
+
+    if(contactLi && contactLi.parentElement === sidebarNav) {
+      sidebarNav.insertBefore(militaryLi, contactLi);
+    } else {
+      // fallback: append to end
+      sidebarNav.appendChild(militaryLi);
+    }
   }
 
   function openSidebar(){
@@ -35,15 +68,6 @@
     overlay.classList.remove('visible');
     if(toggle) toggle.setAttribute('aria-expanded','false');
     document.body.style.overflow = '';
-    // If projects submenu is open, close it as well
-    const projectsSubmenu = document.getElementById('projects-submenu');
-    const projectsToggle = document.getElementById('projectsToggle');
-    const projectsCaret = document.getElementById('projectsCaret');
-    if(projectsSubmenu && projectsSubmenu.classList.contains('open')){
-      projectsSubmenu.classList.remove('open');
-    }
-    if(projectsToggle) projectsToggle.setAttribute('aria-expanded','false');
-    if(projectsCaret) projectsCaret.classList.remove('open');
     if(toggle) toggle.focus();
   }
 
@@ -179,6 +203,9 @@
 
   // On load: handle initial page state (smooth-scroll to hash if present, highlight active link)
   document.addEventListener('DOMContentLoaded', () => {
+    // Ensure Military link is present as early as possible
+    ensureMilitaryLink();
+
     // If landing on index with hash, smooth-scroll to that section
     if(onIndexPage() && window.location.hash){
       const id = window.location.hash.slice(1);
