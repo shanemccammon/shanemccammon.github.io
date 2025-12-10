@@ -8,37 +8,34 @@
   <link rel="stylesheet" href="sidebar.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    /* ensure consistent thumbnail sizing for project images */
+    /* Thumbnails and general spacing */
     .project-image-thumb, .resource-thumb {
-      max-width: 300px;
+      width: 100%;
+      max-width: 420px;
       height: auto;
-      margin: 10px 0;
+      margin: 10px 0 0 0;
       display: block;
       border-radius: 8px;
     }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    @media (min-width: 760px) {
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    .project {
-      padding: 0.5rem 0;
-    }
-    .project h3 {
-      margin: 0 0 0.4rem 0;
-    }
-    .project p.description {
-      margin: 0 0 0.6rem 0;
-    }
-    .project .button {
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 1rem; }
+
+    /* Project spacing */
+    .project { margin: 1.25rem 0; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+
+    .project h3, .project h4 { margin: 0 0 0.4rem 0; font-weight:700; }
+    .project p.description { margin: 0 0 0.6rem 0; line-height: 1.45; }
+
+    .button { display:inline-block; margin-top:0.6rem; padding:0.45rem 0.75rem; background:#007acc; color:#fff; text-decoration:none; border-radius:4px; }
+
+    /* Image gallery spacing when multiple images */
+    .gallery img { margin-bottom: 0.6rem; display:block; max-width:420px; }
+
+    /* Accessibility: make sure focus styles are visible */
+    a.button:focus { outline: 3px solid #ffd54f; outline-offset: 2px; }
+
+    /* Ensure everything stacks vertically (no side-by-side layout) */
+    .projects-vertical { display: block; }
   </style>
 </head>
 <body>
@@ -68,80 +65,80 @@
   </nav>
 
   <main>
-    <section id="projects" class="container">
+    <section id="projects" class="container projects-vertical">
       <h2>Projects</h2>
 
       <!-- PCB Design and Manufacturing group -->
       <section id="pcb-design" aria-labelledby="pcb-design-heading" class="container">
         <h3 id="pcb-design-heading">PCB Design and Manufacturing</h3>
-        <div class="projects-grid" role="list">
-          <article id="board1" class="project" role="listitem">
-            <h4>Board 1: Astable 555 Timer</h4>
-            <p class="description">A PCB implementing an astable 555 timer. Designed to demonstrate timing circuits and layout considerations for simple oscillator circuits.</p>
-            <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
-            <a href="McCammon_Brd1_Report.pdf" target="_blank" class="button" rel="noopener">View Board 1 Report (PDF)</a>
-          </article>
 
-          <article id="board2" class="project" role="listitem">
-            <h4>Board 2: Good vs Bad Layout Demonstration</h4>
-            <p class="description">A demonstration board using hex inverters to illustrate the effects of PCB layout on signal integrity and noise — compares good and bad layout practices.</p>
-            <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb project-image-thumb">
-            <a href="McCammon_Brd2_Report.pdf" target="_blank" class="button" rel="noopener">View Board 2 Report (PDF)</a>
-          </article>
+        <!-- Board 1 -->
+        <article id="board1" class="project" aria-labelledby="board1-title">
+          <h4 id="board1-title">Board 1: Astable 555 Timer</h4>
+          <p class="description">A PCB implementing an astable 555 timer. Designed to demonstrate timing circuits and layout considerations for simple oscillator circuits.</p>
+          <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd1_Report.pdf" target="_blank" rel="noopener" class="button">View Board 1 Report (PDF)</a>
+        </article>
 
-          <article id="board3" class="project" role="listitem">
-            <h4>Board 3: The "Golden Arduino"</h4>
-            <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies.</p>
-            <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb project-image-thumb">
-            <a href="McCammon_Brd3_Report (1).pdf" target="_blank" class="button" rel="noopener">View Board 3 Report (PDF)</a>
-          </article>
-        </div>
+        <!-- Board 2 -->
+        <article id="board2" class="project" aria-labelledby="board2-title">
+          <h4 id="board2-title">Board 2: Good vs Bad Layout Demonstration</h4>
+          <p class="description">A demonstration board using hex inverters to illustrate the effects of PCB layout on signal integrity and noise — compares good and bad layout practices.</p>
+          <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd2_Report.pdf" target="_blank" rel="noopener" class="button">View Board 2 Report (PDF)</a>
+        </article>
+
+        <!-- Board 3 -->
+        <article id="board3" class="project" aria-labelledby="board3-title">
+          <h4 id="board3-title">Board 3: The "Golden Arduino"</h4>
+          <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies.</p>
+          <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd3_Report (1).pdf" target="_blank" rel="noopener" class="button">View Board 3 Report (PDF)</a>
+        </article>
       </section>
 
       <!-- Power Electronics -->
-      <section id="power-electronics" class="container" aria-labelledby="power-heading">
+      <section id="power-electronics" class="container">
         <h3 id="power-heading">Power Electronics</h3>
         <p class="description">Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel and implemented MPPT using a microcontroller.</p>
-        <div class="projects-grid" aria-hidden="false">
-          <article class="project">
-            <img src="power1.jpg" alt="Power electronics project 1" class="project-image-thumb">
-            <img src="power2.jpg" alt="Power electronics project 2" class="project-image-thumb">
-            <img src="power3.jpg" alt="Power electronics project 3" class="project-image-thumb">
-          </article>
+        <div class="project gallery">
+          <img src="power1.jpg" alt="Power electronics project 1" class="project-image-thumb">
+          <img src="power2.jpg" alt="Power electronics project 2" class="project-image-thumb">
+          <img src="power3.jpg" alt="Power electronics project 3" class="project-image-thumb">
         </div>
       </section>
 
       <!-- EDL -->
-      <section id="edl" class="container" aria-labelledby="edl-heading">
+      <section id="edl" class="container">
         <h3 id="edl-heading">Entry, Descent, and Landing (EDL) / Electronics Design Lab</h3>
         <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PID motor control and other embedded systems features used for the EDL project.</p>
-        <div class="projects-grid">
-          <article class="project">
-            <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
-            <img src="edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
-          </article>
+        <div class="project gallery">
+          <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
+          <img src="edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
         </div>
       </section>
 
       <!-- Application of Embedded Systems -->
-      <section id="embedded-systems" class="container" aria-labelledby="embedded-heading">
+      <section id="embedded-systems" class="container">
         <h3 id="embedded-heading">Application of Embedded Systems</h3>
         <p class="description">Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom PCB design.</p>
-        <img src="pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
+        <div class="project">
+          <img src="pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
+        </div>
       </section>
 
       <!-- Experimental Physics -->
-      <section id="experimental-physics" class="container" aria-labelledby="exp-heading">
+      <section id="experimental-physics" class="container">
         <h3 id="exp-heading">Experimental Physics</h3>
         <p class="description">Participated in research on coronal heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. The related publication is linked below.</p>
-        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" class="button" rel="noopener">View Published Paper</a>
+        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" rel="noopener" class="button">View Published Paper</a>
       </section>
 
       <!-- Embedded AI -->
-      <section id="embedded-ai" class="container" aria-labelledby="ai-heading">
+      <section id="embedded-ai" class="container">
         <h3 id="ai-heading">Embedded AI</h3>
         <p class="description">Introductory course on AI for embedded systems: built, trained, and quantized TensorFlow Lite models and explored deployment on microcontrollers. The project repository is linked below.</p>
-        <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" class="button" rel="noopener">Embedded AI GitHub Repo</a>
+        <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" rel="noopener" class="button">Embedded AI GitHub Repo</a>
       </section>
 
     </section>
