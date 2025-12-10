@@ -6,14 +6,9 @@
   <title>Shane McCammon Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="sidebar.css" />
-  <!-- Particles background CSS (homepage only) -->
-  <link rel="stylesheet" href="particles.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Full-screen particle canvas (placed first so it sits behind other content) -->
-  <canvas id="particles-canvas" aria-hidden="true"></canvas>
-
   <header class="hero-header">
     <div class="overlay"></div>
     <div class="container hero-content">
@@ -28,34 +23,10 @@
   <nav id="sidebar" class="sidebar" aria-label="Primary">
     <div class="sidebar-inner">
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
-
-      <!-- Optional logo if present -->
-      <div class="sidebar-logo" aria-hidden="true" style="display:none;">
-        <img src="usa.png" alt="United States flag" />
-      </div>
-
       <ul class="sidebar-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#resume">Resume</a></li>
-
-        <li>
-          <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
-            Projects
-            <span id="projectsCaret" class="caret" aria-hidden="true">▸</span>
-          </button>
-
-          <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
-            <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design &amp; Manufacturing</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#edl">Entry, Descent, &amp; Landing (EDL)</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Application of Embedded Systems</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#experimental-physics">Experimental Physics</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#embedded-ai">Embedded AI</a></li>
-          </ul>
-        </li>
-
-        <li><a href="military.html">Military</a></li>
-
+        <li><a href="projects.html">Projects</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
       <div class="sidebar-footer">
@@ -71,7 +42,7 @@
       <div class="about-layout">
         <img src="profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
         <p>
-          I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University, [...]
+          I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University, I spent 7 years in the United States Army.
         </p>
       </div>
     </section>
@@ -99,7 +70,5 @@
   </footer>
 
   <script src="sidebar.js" defer></script>
-  <!-- Particles script (homepage only) -->
-  <script src="particles.js" defer></script>
 </body>
 </html>
