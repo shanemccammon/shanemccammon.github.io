@@ -24,27 +24,59 @@
     <div class="sidebar-inner">
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
       <ul class="sidebar-nav">
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#resume">Resume</a></li>
+
+        <!-- Projects with nested submenu -->
+        <li class="has-submenu">
+          <button class="submenu-toggle" aria-expanded="false" aria-controls="projects-submenu">
+            Projects
+            <span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <ul id="projects-submenu" class="submenu" role="menu">
+            <li><a href="projects.html#board1">Board 1 — Astable 555 Timer</a></li>
+            <li><a href="board2.html">Board 2 — Layout Demo (Hex Inverters)</a></li>
+            <li><a href="board3.html">Board 3 — Golden Arduino</a></li>
+            <li><a href="edl.html">EDL — Bluetooth Rover</a></li>
+            <li><a href="embedded-systems.html">Application of Embedded Systems</a></li>
+            <li><a href="embedded-ai.html">Embedded AI</a></li>
+            <li><a href="experimental-physics.html">Experimental Physics</a></li>
+            <li><a href="power-electronics.html">Power Electronics</a></li>
+          </ul>
+        </li>
+
         <li><a href="contact.html">Contact</a></li>
       </ul>
+
       <div class="sidebar-footer">
         <small>&copy; 2025 Shane McCammon</small>
       </div>
     </div>
   </nav>
 
-  <main class="container">
-    <h2>Welcome</h2>
-    <p>Welcome to my portfolio. Use the sidebar to navigate to each page: About, Resume, Projects, and Contact.</p>
-
-    <section class="quick-links" style="margin-top:1rem;">
-      <a class="button" href="about.html">About</a>
-      <a class="button" href="resume.html">Resume</a>
-      <a class="button" href="projects.html">Projects</a>
-      <a class="button" href="contact.html">Contact</a>
+  <main>
+    <section id="welcome" class="container">
+      <h2>Welcome</h2>
+      <p>Welcome to my portfolio. Use the sidebar to navigate. About and Resume are on this page; Projects opens a dropdown — each project has its own page.</p>
     </section>
+
+    <!-- About (stays on home page) -->
+    <section id="about" class="container">
+      <h2>About Me</h2>
+      <div class="about-layout">
+        <img src="profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
+        <p>
+          I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending CU, I [...]
+        </p>
+      </div>
+    </section>
+
+    <!-- Resume (stays on home page) -->
+    <section id="resume" class="container">
+      <h2>Resume</h2>
+      <a href="McCammon_Resume.pdf" target="_blank" class="button">View Resume (PDF)</a>
+    </section>
+
   </main>
 
   <footer>
