@@ -7,6 +7,39 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="sidebar.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* ensure consistent thumbnail sizing for project images */
+    .project-image-thumb, .resource-thumb {
+      max-width: 300px;
+      height: auto;
+      margin: 10px 0;
+      display: block;
+      border-radius: 8px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 760px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .project {
+      padding: 0.5rem 0;
+    }
+    .project h3 {
+      margin: 0 0 0.4rem 0;
+    }
+    .project p.description {
+      margin: 0 0 0.6rem 0;
+    }
+    .project .button {
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body>
   <header class="hero-header">
@@ -35,60 +68,88 @@
   </nav>
 
   <main>
-    <!-- PCB Design and Manufacturing group -->
-    <section id="pcb-design" class="container">
-      <h2>PCB Design and Manufacturing</h2>
+    <section id="projects" class="container">
+      <h2>Projects</h2>
 
-      <!-- Project 1: Board 1 -->
-      <article id="board1" class="project">
-        <h3>Board 1: Astable 555 Timer</h3>
-        <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb">
-        <p class="button-description">
-          Astable 555 Timer
-        </p>
-        <a href="McCammon_Brd1_Report.pdf" target="_blank" class="button">View Board 1 Report (PDF)</a>
-      </article>
+      <!-- PCB Design and Manufacturing group -->
+      <section id="pcb-design" aria-labelledby="pcb-design-heading" class="container">
+        <h3 id="pcb-design-heading">PCB Design and Manufacturing</h3>
+        <div class="projects-grid" role="list">
+          <article id="board1" class="project" role="listitem">
+            <h4>Board 1: Astable 555 Timer</h4>
+            <p class="description">A PCB implementing an astable 555 timer. Designed to demonstrate timing circuits and layout considerations for simple oscillator circuits.</p>
+            <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
+            <a href="McCammon_Brd1_Report.pdf" target="_blank" class="button" rel="noopener">View Board 1 Report (PDF)</a>
+          </article>
 
-      <!-- Project 2: Board 2 -->
-      <article id="board2" class="project">
-        <h3>Board 2: Good vs Bad Layout Demonstration</h3>
-        <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb">
-        <p class="button-description">
-          Good vs Bad Layout Demonstration (Hex Inverters)
-        </p>
-        <a href="McCammon_Brd2_Report.pdf" target="_blank" class="button">View Board 2 Report (PDF)</a>
-      </article>
+          <article id="board2" class="project" role="listitem">
+            <h4>Board 2: Good vs Bad Layout Demonstration</h4>
+            <p class="description">A demonstration board using hex inverters to illustrate the effects of PCB layout on signal integrity and noise — compares good and bad layout practices.</p>
+            <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb project-image-thumb">
+            <a href="McCammon_Brd2_Report.pdf" target="_blank" class="button" rel="noopener">View Board 2 Report (PDF)</a>
+          </article>
 
-      <!-- Project 3: Board 3 -->
-      <article id="board3" class="project">
-        <h3>Board 3: The "Golden Arduino"</h3>
-        <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb">
-        <p class="button-description">
-          The "Golden Arduino" - A custom arduino board designed to optimize noise performance and reduce EMI
-        </p>
-        <a href="McCammon_Brd3_Report (1).pdf" target="_blank" class="button">View Board 3 Report (PDF)</a>
-      </article>
+          <article id="board3" class="project" role="listitem">
+            <h4>Board 3: The "Golden Arduino"</h4>
+            <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies.</p>
+            <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb project-image-thumb">
+            <a href="McCammon_Brd3_Report (1).pdf" target="_blank" class="button" rel="noopener">View Board 3 Report (PDF)</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Power Electronics -->
+      <section id="power-electronics" class="container" aria-labelledby="power-heading">
+        <h3 id="power-heading">Power Electronics</h3>
+        <p class="description">Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel and implemented MPPT using a microcontroller.</p>
+        <div class="projects-grid" aria-hidden="false">
+          <article class="project">
+            <img src="power1.jpg" alt="Power electronics project 1" class="project-image-thumb">
+            <img src="power2.jpg" alt="Power electronics project 2" class="project-image-thumb">
+            <img src="power3.jpg" alt="Power electronics project 3" class="project-image-thumb">
+          </article>
+        </div>
+      </section>
+
+      <!-- EDL -->
+      <section id="edl" class="container" aria-labelledby="edl-heading">
+        <h3 id="edl-heading">Entry, Descent, and Landing (EDL) / Electronics Design Lab</h3>
+        <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PID motor control and other embedded systems features used for the EDL project.</p>
+        <div class="projects-grid">
+          <article class="project">
+            <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
+            <img src="edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
+          </article>
+        </div>
+      </section>
+
+      <!-- Application of Embedded Systems -->
+      <section id="embedded-systems" class="container" aria-labelledby="embedded-heading">
+        <h3 id="embedded-heading">Application of Embedded Systems</h3>
+        <p class="description">Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom PCB design.</p>
+        <img src="pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
+      </section>
+
+      <!-- Experimental Physics -->
+      <section id="experimental-physics" class="container" aria-labelledby="exp-heading">
+        <h3 id="exp-heading">Experimental Physics</h3>
+        <p class="description">Participated in research on coronal heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. The related publication is linked below.</p>
+        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" class="button" rel="noopener">View Published Paper</a>
+      </section>
+
+      <!-- Embedded AI -->
+      <section id="embedded-ai" class="container" aria-labelledby="ai-heading">
+        <h3 id="ai-heading">Embedded AI</h3>
+        <p class="description">Introductory course on AI for embedded systems: built, trained, and quantized TensorFlow Lite models and explored deployment on microcontrollers. The project repository is linked below.</p>
+        <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" class="button" rel="noopener">Embedded AI GitHub Repo</a>
+      </section>
 
     </section>
 
-    <!-- Project 4: EDL -->
-    <section id="edl" class="container">
-      <h2>Entry, Descent, and Landing Project</h2>
-      <img src="edl.jpg" alt="EDL project" class="resource-thumb">
-      <p class="button-description">
-        Entry, Descent, and Landing System
-      </p>
+    <section id="contact" class="container">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a></p>
     </section>
-
-    <!-- Project 5: Power Electronics -->
-    <section id="power" class="container">
-      <h2>Power Electronics Project</h2>
-      <img src="power1.jpg" alt="Power electronics project" class="resource-thumb">
-      <p class="button-description">
-        Power Electronics Design and Implementation
-      </p>
-    </section>
-
   </main>
 
   <footer>
