@@ -1,74 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shane McCammon Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="sidebar.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shane McCammon Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+      /* Added image thumb class for resizing */
+      .project-image-thumb {
+        max-width: 300px;
+        height: auto;
+        margin: 10px 0;
+        display: block;
+        border-radius: 8px;
+      }
+      .container { max-width: 980px; margin: 0 auto; padding: 1rem; }
+      .about-layout { display:flex; gap:1rem; align-items:flex-start; }
+      .profile-photo { max-width:160px; border-radius:8px; }
+    </style>
 </head>
 <body>
-  <header class="hero-header">
-    <div class="overlay"></div>
-    <div class="container hero-content">
-      <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <h1>Shane McCammon</h1>
-      <p class="subtitle">University of Colorado Boulder</p>
-      <p class="subsubtitle">Electrical and Energy Engineering</p>
-    </div>
-  </header>
+    <header class="hero-header">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+            <h1>Shane McCammon</h1>
+            <p class="subtitle">University of Colorado Boulder</p>
+            <p class="subsubtitle">Electrical and Energy Engineering</p>
+        </div>
+    </header>
 
-  <!-- Sidebar navigation -->
-  <nav id="sidebar" class="sidebar" aria-label="Primary">
-    <div class="sidebar-inner">
-      <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
-      <ul class="sidebar-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#resume">Resume</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <small>&copy; 2025 Shane McCammon</small>
+    <!-- Sidebar navigation (shared markup) -->
+    <nav id="sidebar" class="sidebar" aria-label="Primary">
+      <div class="sidebar-inner">
+        <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
+        <ul class="sidebar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#resume">Resume</a></li>
+
+          <!-- Projects dropdown (top-level project headers only) -->
+          <li>
+            <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
+              Projects
+              <span id="projectsCaret" class="caret" aria-hidden="true">▸</span>
+            </button>
+
+            <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
+              <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design &amp; Manufacturing</a></li>
+              <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
+              <li role="none"><a role="menuitem" href="projects.html#edl">Entry, Descent, &amp; Landing (EDL)</a></li>
+              <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Application of Embedded Systems</a></li>
+              <li role="none"><a role="menuitem" href="projects.html#experimental-physics">Experimental Physics</a></li>
+              <li role="none"><a role="menuitem" href="projects.html#embedded-ai">Embedded AI</a></li>
+            </ul>
+          </li>
+
+          <!-- New Military link above Contact -->
+          <li><a href="military.html">Military</a></li>
+
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="sidebar-footer">
+          <small>&copy; 2025 Shane McCammon</small>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <main>
-    <!-- About (stays on home page) -->
-    <section id="about" class="container">
-      <h2>About Me</h2>
-      <div class="about-layout">
-        <img src="profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
-        <p>
-          I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University, I spent 7 years in the United States Army.
-        </p>
-      </div>
-    </section>
+    <main>
+        <section id="about" class="container">
+            <h2>About Me</h2>
+             <div class="about-layout">
+            <img src="profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
+            <p>
+            I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending CU, I spent 7 years in the United States Army. 
+            </p>
+             </div> 
+        </section>
 
-    <!-- Resume (stays on home page) -->
-    <section id="resume" class="container">
-      <h2>Resume</h2>
-      <a href="McCammon_Resume.pdf" target="_blank" class="button">View Resume (PDF)</a>
-    </section>
+        <section id="resume" class="container">
+            <h2>Resume</h2>
+            <a href="McCammon_Resume.pdf" target="_blank" class="button">View Resume (PDF)</a>
+        </section>
 
-    <!-- Contact (stays on home page) -->
-    <section id="contact" class="container">
-      <h2>Contact</h2>
-      <p>
-        Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
-      </p>
-    </section>
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            <p>Summary of projects and links to the projects page.</p>
+            <a href="projects.html" class="button">See projects</a>
+        </section>
 
-  </main>
+        <section id="contact" class="container">
+            <h2>Contact</h2>
+            <p>
+                Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
+            </p>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="sidebar.js" defer></script>
+    <script src="sidebar.js" defer></script>
 </body>
 </html>
