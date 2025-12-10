@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="sidebar.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    /* Ensure consistent thumbnail sizing for project images */
+    /* Thumbnails and general spacing */
     .project-image-thumb, .resource-thumb {
       width: 100%;
       max-width: 420px;
@@ -22,18 +22,19 @@
 
     /* Project spacing */
     .project { margin: 1.25rem 0; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+
     .project h3, .project h4 { margin: 0 0 0.4rem 0; font-weight:700; }
     .project p.description { margin: 0 0 0.6rem 0; line-height: 1.45; }
 
     .button { display:inline-block; margin-top:0.6rem; padding:0.45rem 0.75rem; background:#007acc; color:#fff; text-decoration:none; border-radius:4px; }
 
-    /* Image gallery spacing */
+    /* Image gallery spacing when multiple images */
     .gallery img { margin-bottom: 0.6rem; display:block; max-width:420px; }
 
-    /* Accessibility: focus */
+    /* Accessibility: make sure focus styles are visible */
     a.button:focus { outline: 3px solid #ffd54f; outline-offset: 2px; }
 
-    /* Ensure everything stacks vertically */
+    /* Ensure everything stacks vertically (no side-by-side layout) */
     .projects-vertical { display: block; }
   </style>
 </head>
@@ -55,7 +56,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#resume">Resume</a></li>
 
-        <!-- Projects dropdown (button + submenu). Keep this in all pages' sidebars to have dropdown site-wide. -->
+        <!-- Projects dropdown (only PCB Design & Manufacturing listed) -->
         <li>
           <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
             Projects
@@ -63,15 +64,7 @@
           </button>
 
           <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
-            <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design & Manufacturing (overview)</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#board1">Board 1 — Astable 555 Timer</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#board2">Board 2 — Good vs Bad Layout</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#board3">Board 3 — The "Golden Arduino"</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#edl">EDL / Electronics Design Lab</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Application of Embedded Systems</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#experimental-physics">Experimental Physics</a></li>
-            <li role="none"><a role="menuitem" href="projects.html#embedded-ai">Embedded AI</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design & Manufacturing</a></li>
           </ul>
         </li>
 
