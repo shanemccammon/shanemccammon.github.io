@@ -1,6 +1,3 @@
-/* Basic sidebar styles and responsive behavior */
-/* You can merge these into style.css if preferred */
-
 :root{
   --sidebar-width: 260px;
   --accent: #2d6df6;
@@ -9,7 +6,6 @@
 }
 
 body {
-  /* ensure main content can shift when sidebar opens on wide screens */
   transition: margin-left 0.25s ease;
 }
 
@@ -28,7 +24,7 @@ body {
   z-index: 50;
 }
 
-/* Sidebar base */
+/* Sidebar base (keeps scrolling ability but hides visual scrollbar) */
 .sidebar {
   position: fixed;
   left: 0;
@@ -42,11 +38,18 @@ body {
   transform: translateX(-110%);
   transition: transform 0.28s ease;
   z-index: 60;
-  overflow-y: auto;
-  will-change: transform;
+  overflow-y: auto; /* allow scrolling when content overflows */
+  -webkit-overflow-scrolling: touch; /* smooth momentum on iOS */
+  -ms-overflow-style: none; /* IE & Edge hide scrollbar */
+  scrollbar-width: none; /* Firefox hide scrollbar */
 }
 
-/* open state */
+/* Hide webkit scrollbar visuals */
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* open state for small screens */
 .sidebar.open {
   transform: translateX(0);
 }
@@ -79,22 +82,71 @@ body {
   gap: 0.25rem;
 }
 
-.sidebar-nav a {
-  display: block;
+.sidebar-nav > li {
+  display:block;
+}
+
+/* Top-level links/buttons */
+.sidebar-nav a,
+.sidebar-nav .submenu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   padding: 0.65rem 0.75rem;
   color: var(--text);
   text-decoration: none;
   border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
+  font: inherit;
 }
 
+/* Hover/focus state */
 .sidebar-nav a:hover,
-.sidebar-nav a:focus {
+.sidebar-nav a:focus,
+.sidebar-nav .submenu-toggle:hover,
+.sidebar-nav .submenu-toggle:focus {
   background: rgba(255,255,255,0.04);
   outline: none;
 }
 
-.sidebar-nav a.active {
+/* Submenu styles */
+.submenu {
+  list-style: none;
+  padding-left: 0.5rem;
+  margin: 0.5rem 0 0 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.22s ease, opacity 0.18s ease;
+  opacity: 0;
+}
+
+/* Submenu items */
+.submenu li a {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.95rem;
+  display: block;
+}
+
+/* When submenu is open */
+.has-submenu.open .submenu,
+.submenu.open {
+  max-height: 1000px; /* large enough to show all items */
+  opacity: 1;
+}
+
+/* caret rotate when open */
+.has-submenu.open .caret,
+.submenu-toggle[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+/* Active link */
+.sidebar-nav a.active,
+.submenu li a.active {
   background: var(--accent);
   color: white;
   box-shadow: 0 4px 14px rgba(45,109,246,0.2);
