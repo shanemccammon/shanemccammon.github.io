@@ -120,7 +120,7 @@
     });
   }
 
-  // On load: highlight active link
+  // On load: handle initial page state (smooth-scroll to hash if present, highlight active link)
   document.addEventListener('DOMContentLoaded', () => {
     // If landing on index with hash, smooth-scroll to that section
     if(onIndexPage() && window.location.hash){
