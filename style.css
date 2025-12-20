@@ -79,7 +79,16 @@ h1, h2 {
 #about h2 {
     text-align: center;
 }
+/* Project headings */
+.project h3 {
+  font-size: 1.4rem;
+  font-weight: 700; /* keep bold */
+}
 
+.project h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 .about-layout {
     display: flex;
     align-items: center;
