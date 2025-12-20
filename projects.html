@@ -1,58 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .projects {
-            margin: 20px;
-        }
-        .project {
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .project img {
-            width: 100%;
-            height: auto;
-        }
-        .project-description {
-            padding: 10px;
-        }
-        .capstone {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .capstone h2 {
-            margin: 0;
-        }
-        .capstone-images img {
-            max-width: 30%;
-            margin: 10px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - Shane McCammon Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sidebar.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* Thumbnails and general spacing */
+    .project-image-thumb, .resource-thumb {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      margin: 10px 0 0 0;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 1rem; }
+
+    /* Project spacing */
+    .project { margin: 1.25rem 0; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+
+    .project h3, .project h4 { margin: 0 0 0.4rem 0; font-weight:700; }
+    .project p.description { margin: 0 0 0.6rem 0; line-height: 1.45; }
+
+    .button { display:inline-block; margin-top:0.6rem; padding:0.45rem 0.75rem; background:#007acc; color:#fff; text-decoration:none; border-radius:4px; }
+
+    /* Image gallery spacing when multiple images */
+    .gallery img { margin-bottom: 0.6rem; display:block; max-width:420px; }
+
+    /* Accessibility: make sure focus styles are visible */
+    a.button:focus { outline: 3px solid #ffd54f; outline-offset: 2px; }
+
+    /* Ensure everything stacks vertically (no side-by-side layout) */
+    .projects-vertical { display: block; }
+  </style>
 </head>
 <body>
-    <div class="capstone">
-        <h2>Capstone Project</h2>
-        <div class="capstone-images">
-            <img src="images/capstone.jpg" alt="Capstone Image 1">
-            <img src="images/capstone2.jpg" alt="Capstone Image 2">
-            <img src="images/capstone3.jpg" alt="Capstone Image 3">
-        </div>
-        <p class="project-description">The Capstone project marks the culmination of our efforts, integrating diverse skills into one cohesive and impactful work. This project, enriched with innovation and creativity, demonstrates mastery in creating solutions that matter.</p>
+  <header class="hero-header">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+      <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <h1>Shane McCammon</h1>
+      <p class="subtitle">Projects</p>
     </div>
+  </header>
 
-    <div class="projects">
-        <!-- Existing project entries will follow here -->
+  <!-- Sidebar navigation (shared markup) -->
+  <nav id="sidebar" class="sidebar" aria-label="Primary">
+    <div class="sidebar-inner">
+      <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
+      <ul class="sidebar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#resume">Resume</a></li>
+
+        <!-- Projects dropdown (top-level project headers only) -->
+        <li>
+          <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
+            Projects
+            <span id="projectsCaret" class="caret" aria-hidden="true">▸</span>
+          </button>
+
+          <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
+            <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design &amp; Manufacturing</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#edl">Entry, Descent, &amp; Landing (EDL)</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#embedded-systems">Application of Embedded Systems</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#experimental-physics">Experimental Physics</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#embedded-ai">Embedded AI</a></li>
+          </ul>
+        </li>
+
+        <!-- New Military link above Contact -->
+        <li><a href="military.html">Military</a></li>
+
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <small>&copy; 2025 Shane McCammon</small>
+      </div>
     </div>
+  </nav>
+
+  <main>
+    <section id="projects" class="container projects-vertical">
+      <h2>Projects</h2>
+
+      <!-- PCB Design and Manufacturing group -->
+      <section id="pcb-design" aria-labelledby="pcb-design-heading" class="container">
+        <h3 id="pcb-design-heading">PCB Design and Manufacturing</h3>
+
+        <!-- Board 1 -->
+        <article id="board1" class="project" aria-labelledby="board1-title">
+          <h4 id="board1-title">Board 1: Astable 555 Timer</h4>
+          <p class="description">A PCB implementing an astable 555 timer. Designed to demonstrate timing circuits and layout considerations for simple oscillator circuits.</p>
+          <img src="board1.jpg" alt="Board 1 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd1_Report.pdf" target="_blank" rel="noopener" class="button">View Board 1 Report (PDF)</a>
+        </article>
+
+        <!-- Board 2 -->
+        <article id="board2" class="project" aria-labelledby="board2-title">
+          <h4 id="board2-title">Board 2: Good vs Bad Layout Demonstration</h4>
+          <p class="description">A demonstration board using hex inverters to illustrate the effects of PCB layout on signal integrity and noise — compares good and bad layout practices.</p>
+          <img src="board2.jpg" alt="Board 2 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd2_Report.pdf" target="_blank" rel="noopener" class="button">View Board 2 Report (PDF)</a>
+        </article>
+
+        <!-- Board 3 -->
+        <article id="board3" class="project" aria-labelledby="board3-title">
+          <h4 id="board3-title">Board 3: The "Golden Arduino"</h4>
+          <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies.</p>
+          <img src="board3.jpg" alt="Board 3 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd3_Report (1).pdf" target="_blank" rel="noopener" class="button">View Board 3 Report (PDF)</a>
+        </article>
+      </section>
+
+      <!-- Power Electronics -->
+      <section id="power-electronics" class="container">
+        <h3 id="power-heading">Power Electronics</h3>
+        <p class="description">Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel and implemented MPPT using a microcontroller.</p>
+        <div class="project gallery">
+          <img src="power1.jpg" alt="Power electronics project 1" class="project-image-thumb">
+          <img src="power2.jpg" alt="Power electronics project 2" class="project-image-thumb">
+          <img src="power3.jpg" alt="Power electronics project 3" class="project-image-thumb">
+        </div>
+      </section>
+
+      <!-- EDL -->
+      <section id="edl" class="container">
+        <h3 id="edl-heading">Electronics Design Lab</h3>
+        <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PID motor control and other embedded systems features used for the EDL project.</p>
+        <div class="project gallery">
+          <img src="edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
+          <img src="edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
+        </div>
+      </section>
+
+      <!-- Application of Embedded Systems -->
+      <section id="embedded-systems" class="container">
+        <h3 id="embedded-heading">Application of Embedded Systems</h3>
+        <p class="description">Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom PCB design.</p>
+        <div class="project">
+          <img src="pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
+        </div>
+      </section>
+
+      <!-- Experimental Physics -->
+      <section id="experimental-physics" class="container">
+        <h3 id="exp-heading">Experimental Physics</h3>
+        <p class="description">Participated in research on coronal heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. The related publication is linked below.</p>
+        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" rel="noopener" class="button">View Published Paper</a>
+      </section>
+
+      <!-- Embedded AI -->
+      <section id="embedded-ai" class="container">
+        <h3 id="ai-heading">Embedded AI</h3>
+        <p class="description">Introductory course on AI for embedded systems: built, trained, and quantized TensorFlow Lite models and explored deployment on microcontrollers. The project repository is linked below.</p>
+        <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" rel="noopener" class="button">Embedded AI GitHub Repo</a>
+      </section>
+
+    </section>
+
+   
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="sidebar.js" defer></script>
 </body>
 </html>
