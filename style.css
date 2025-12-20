@@ -84,6 +84,7 @@ h1, h2 {
   font-size: 2.3rem;  /* adjust as desired */
   font-weight: 700;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .project h4 {
