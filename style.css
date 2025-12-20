@@ -89,6 +89,10 @@ h1, h2 {
   font-size: 1.2rem;
   font-weight: 700;
 }
+#projects h3 {
+  font-size: 3.0rem;  /* adjust as desired */
+  font-weight: 700;
+}
 .about-layout {
     display: flex;
     align-items: center;
