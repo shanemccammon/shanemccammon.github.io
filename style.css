@@ -8,7 +8,7 @@ body {
 .hero-header {
     position: relative;
     min-height: 350px;
-    background: url('boulder.jpg') center center/cover no-repeat;
+    background: url('media/boulder.jpg') center center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,4 +171,3 @@ footer {
 }
 
 }
-
