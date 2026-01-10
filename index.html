@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -25,7 +25,6 @@
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
       <ul class="sidebar-nav">
         <li><a href="index.html">Home</a></li>
-        <!-- Resume now links directly to the PDF -->
         <li><a href="McCammon_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="index.html#contact">Contact</a></li>
@@ -37,36 +36,39 @@
   </nav>
 
   <main>
-    <!-- About (stays on home page) -->
-<div class="about-wrapper">
-  <img class="about-logo about-logo-left" src="media/CU.png" alt="CU logo">
+    <!-- CHANGED: logos now wrap BOTH About and Contact -->
+    <div class="about-wrapper">
+      <img class="about-logo about-logo-left" src="media/CU.png" alt="CU logo">
 
-  <section id="about" class="container">
-    <h2>About Me</h2>
-    <div class="about-layout">
-      <img src="media/profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
-      <p>
-        I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University I served in the United States Army for 7 years with a a deployment in support of Operation Inherent Resolve. My engineering interests include, but are not limited to, Radio Frequency (RF) engineering, PCB design and manufacturing, and Power Electronics.
-      </p>
+      <!-- CHANGED: center column wrapper contains About + Contact -->
+      <div class="about-content">
+
+        <section id="about" class="container">
+          <h2>About Me</h2>
+          <div class="about-layout">
+            <img src="media/profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
+            <p>
+              I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University I served in the United States Army for 7 years with a a deployment in support of Operation Inherent Resolve. My engineering interests include, but are not limited to, Radio Frequency (RF) engineering, PCB design and manufacturing, and Power Electronics.
+            </p>
+          </div>
+        </section>
+
+        <!-- CHANGED: Contact moved inside wrapper so logos wrap it too -->
+        <section id="contact" class="container">
+          <h2>Contact</h2>
+          <p>
+            Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
+          </p>
+          <p>
+            LinkedIn: <a href="https://www.linkedin.com/in/mccammonglen" target="_blank" rel="noopener">www.linkedin.com/in/mccammonglen</a>
+          </p>
+        </section>
+
+      </div>
+
+      <img class="about-logo about-logo-right" src="media/Army.png" alt="Army logo">
     </div>
-  </section>
-
-  <img class="about-logo about-logo-right" src="media/Army.png" alt="Army logo">
-</div>
-    </section>
-
-    <!-- Resume section removed as requested -->
-
-    <!-- Contact (stays on home page) -->
-    <section id="contact" class="container">
-      <h2>Contact</h2>
-      <p>
-        Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
-      </p>
-      <p>
-        LinkedIn: <a href="https://www.linkedin.com/in/mccammonglen" target="_blank" rel="noopener">www.linkedin.com/in/mccammonglen</a>
-      </p>
-    </section>
+    <!-- CHANGED: removed stray </section> that was here -->
 
   </main>
 
