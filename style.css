@@ -180,7 +180,7 @@ footer {
   width: 240px;
   opacity: 0.9;
   pointer-events: none;
-  justify-self: center;  /* center logo inside each gutter */
+  place-self: center;  /* center logo inside each gutter */
 }
 
 .about-logo-left{ grid-column: 1; }
