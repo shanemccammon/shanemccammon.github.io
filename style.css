@@ -177,7 +177,7 @@ footer {
 }
 
 .about-logo{
-  width: 60px;
+  width: 120px;
   opacity: 0.9;
   pointer-events: none;
   justify-self: center;  /* center logo inside each gutter */
