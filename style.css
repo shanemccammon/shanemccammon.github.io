@@ -1,3 +1,5 @@
+* { box-sizing: border-box; } /* CHANGED: prevents padding from increasing element width */
+
 body {
     margin: 0;
     font-family: 'Roboto', Arial, sans-serif;
@@ -28,6 +30,7 @@ body {
     text-align: center;
     width: 100%;
 }
+
 .hero-content h1 {
     font-size: 2.8rem;
     font-weight: 700;
@@ -67,9 +70,10 @@ section {
     padding: 2rem 1.5rem;
     box-shadow: 0 2px 8px rgba(44,62,80,.07);
 }
+
 #about {
     padding-top: 1rem;
-    padding-bottom: 1rem;   /* increase just this section’s height */
+    padding-bottom: 1rem;
 }
 
 h1, h2 {
@@ -81,7 +85,7 @@ h1, h2 {
 }
 
 #projects > h2 {
-  font-size: 2.3rem;  /* adjust as desired */
+  font-size: 2.3rem;
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
@@ -91,10 +95,12 @@ h1, h2 {
   font-size: 1.2rem;
   font-weight: 700;
 }
+
 #projects h3 {
-  font-size: 2.0rem;  /* adjust as desired */
+  font-size: 2.0rem;
   font-weight: 700;
 }
+
 .about-layout {
     display: flex;
     align-items: center;
@@ -107,14 +113,16 @@ h1, h2 {
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
-    margin-top: -10px;   /* move photo up a bit */
+    margin-top: -10px;
 }
+
 .button-description {
     margin: 0 0 0.35rem;
     font-size: 0.95rem;
     color: #555;
     font-weight: bold;
 }
+
 .button {
     display: inline-block;
     padding: 0.6rem 1.2rem;
@@ -127,21 +135,22 @@ h1, h2 {
     margin-bottom: 1rem;
     transition: background 0.2s;
 }
+
 .resource-thumb {
     display: block;
-        width: 300px;          /* fixed small width */
-    height: 300px;         /* fixed small height */
-  
+    width: 300px;
+    height: 300px;
     border-radius: 6px;
-    margin: 0.35rem auto 0.5rem;  /* small space above & below, centered */
+    margin: 0.35rem auto 0.5rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
 .board1-thumb {
     width: auto;
     height: auto;
     max-width: 250px;
     max-height: 250px;
-    object-fit: contain;  /* show whole image inside box if you keep width/height */
+    object-fit: contain;
 }
 
 .button:hover {
@@ -152,6 +161,7 @@ h1, h2 {
     list-style: none;
     padding: 0;
 }
+
 .projects-list li {
     margin-bottom: 1.5rem;
 }
@@ -164,23 +174,28 @@ footer {
     margin-top: 2rem;
     border-top: 1px solid #3C6E71;
 }
+
+/* =========================
+   Logos wrapping About + Contact
+   ========================= */
+
 .about-wrapper{
   display: grid;
-  grid-template-columns: 1fr min(760px, 100%) 1fr; /* left gutter | card | right gutter */
-  align-items: center;                              /* vertically center items in the row */
-  column-gap: 24px;                                 /* optional spacing */
+  grid-template-columns: 1fr min(760px, 100%) 1fr;  /* same center width as .container */
+  align-items: stretch;                               /* CHANGED: allow center column to define full height */
+  column-gap: 24px;
 }
 
-#about.container{
-  grid-column: 2;
-  width: 100%;
+.about-content{
+  grid-column: 2;                                     /* CHANGED: center column now contains BOTH sections */
 }
 
 .about-logo{
   width: 240px;
   opacity: 0.9;
   pointer-events: none;
-  place-self: center;  /* center logo inside each gutter */
+  justify-self: center;                               /* CHANGED */
+  align-self: center;                                 /* CHANGED: vertically center vs full wrapper height */
 }
 
 .about-logo-left{ grid-column: 1; }
@@ -190,9 +205,8 @@ footer {
 @media (max-width: 768px){
   .about-logo{ display: none; }
 }
+
 @media (max-width: 500px) {
     header h1 { font-size: 2.2rem; }
     section { padding: 1rem; }
-}
-
 }
