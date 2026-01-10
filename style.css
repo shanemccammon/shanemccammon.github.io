@@ -164,7 +164,34 @@ footer {
     margin-top: 2rem;
     border-top: 1px solid #3C6E71;
 }
+.about-wrapper {
+    position: relative;
+}
 
+.about-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;          /* adjust size as needed (60–100px works well) */
+    opacity: 0.9;
+    pointer-events: none; /* avoid interfering with clicks */
+}
+
+.about-logo-left {
+    left: 0;
+    transform: translate(-110%, -50%); /* push into the gray margin */
+}
+
+.about-logo-right {
+    right: 0;
+    transform: translate(110%, -50%);  /* push into the gray margin */
+}
+
+@media (max-width: 768px) {
+    .about-logo {
+        display: none; /* hide logos on mobile */
+    }
+}
 @media (max-width: 500px) {
     header h1 { font-size: 2.2rem; }
     section { padding: 1rem; }
