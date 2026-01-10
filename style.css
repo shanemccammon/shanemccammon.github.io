@@ -172,7 +172,7 @@ footer {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;              /* adjust: 50–80px if you want smaller/bigger */
+    width: 30px;              /* adjust: 50–80px if you want smaller/bigger */
     opacity: 0.9;
     pointer-events: none;
 }
