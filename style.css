@@ -164,33 +164,31 @@ footer {
     margin-top: 2rem;
     border-top: 1px solid #3C6E71;
 }
-.about-wrapper {
-    position: relative;
+.about-wrapper{
+  display: grid;
+  grid-template-columns: 1fr min(760px, 100%) 1fr; /* left gutter | card | right gutter */
+  align-items: center;                              /* vertically center items in the row */
+  column-gap: 24px;                                 /* optional spacing */
 }
 
-.about-logo {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;              /* adjust: 50–80px if you want smaller/bigger */
-    opacity: 0.9;
-    pointer-events: none;
+#about.container{
+  grid-column: 2;
+  width: 100%;
 }
 
-/* Position them outside the card, anchored to the gray area */
-.about-logo-left {
-    left: max(12px, calc(50% - 460px));   /* 460px ≈ half of 760px max-width + margin */
+.about-logo{
+  width: 60px;
+  opacity: 0.9;
+  pointer-events: none;
+  justify-self: center;  /* center logo inside each gutter */
 }
 
-.about-logo-right {
-    right: max(12px, calc(50% - 460px));
-}
+.about-logo-left{ grid-column: 1; }
+.about-logo-right{ grid-column: 3; }
 
 /* Hide on mobile */
-@media (max-width: 768px) {
-    .about-logo {
-        display: none;
-    }
+@media (max-width: 768px){
+  .about-logo{ display: none; }
 }
 @media (max-width: 500px) {
     header h1 { font-size: 2.2rem; }
