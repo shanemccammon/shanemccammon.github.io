@@ -60,9 +60,11 @@
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
       <ul class="sidebar-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#resume">Resume</a></li>
 
-        <!-- Projects dropdown (top-level project headers only) -->
+        <!-- Resume: consistent across all pages (opens PDF) -->
+        <li><a href="McCammon_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+
+        <!-- Projects dropdown (top-level project headers) -->
         <li>
           <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
             Projects
@@ -80,11 +82,10 @@
           </ul>
         </li>
 
-        <!-- New Military link above Contact -->
         <li><a href="military.html">Military</a></li>
-
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
+
       <div class="sidebar-footer">
         <small>&copy; 2025 Shane McCammon</small>
       </div>
@@ -139,7 +140,9 @@
       <!-- Power Electronics -->
       <section id="power-electronics" class="container">
         <h3 id="power-heading">Power Electronics</h3>
-        <p class="description">Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel to charge a 12V deep cycle battery. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wrapped to specification. 
+        <p class="description">
+          Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel to charge a 12V deep cycle battery. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wrapped to specification.
+        </p>
         <div class="project gallery">
           <img src="media/buck.png" alt="Power electronics project 1" class="project-image-thumb">
           <img src="media/boost.jpg" alt="Power electronics project 2" class="project-image-thumb">
@@ -160,7 +163,9 @@
       <!-- Application of Embedded Systems -->
       <section id="embedded-systems" class="container">
         <h3 id="embedded-heading">Application of Embedded Systems</h3>
-        <p class="description">Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom[...]
+        <p class="description">
+          Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom [...]
+        </p>
         <div class="project">
           <img src="media/pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
         </div>
@@ -181,8 +186,6 @@
       </section>
 
     </section>
-
-   
   </main>
 
   <footer>
