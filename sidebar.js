@@ -6,218 +6,208 @@
 // - Handles toggle/overlay, close on small screens, Escape key
 // - Ensures a single Military link is present in the sidebar nav (inserted before Contact)
 
-(function(){
+// sidebar.js
+// - Responsive off-canvas sidebar (toggle + overlay)
+// - Optional Projects dropdown submenu
+// - Smooth-scroll for same-page anchors (any page)
+// - Active link highlighting (file + hash)
+
+(function () {
   const sidebar = document.getElementById('sidebar');
   const toggle = document.getElementById('sidebarToggle');
   const closeBtn = document.getElementById('sidebarClose');
   const overlayClass = 'sidebar-overlay';
+  const DESKTOP_BREAKPOINT = 900;
 
   // Ensure overlay exists
   let overlay = document.querySelector('.' + overlayClass);
-  if(!overlay){
+  if (!overlay) {
     overlay = document.createElement('div');
     overlay.className = overlayClass;
     document.body.appendChild(overlay);
   }
 
-  // Insert a single "Military" link into any sidebar nav, before the Contact link.
-  // This avoids editing every HTML file; it will only run on pages that already include the sidebar markup.
-  function ensureMilitaryLink(){
-    const sidebarNav = document.querySelector('.sidebar-nav');
-    if(!sidebarNav) return;
-    // avoid adding multiple times
-    if(sidebarNav.querySelector('a[href="military.html"]')) return;
-
-    const militaryLi = document.createElement('li');
-    const militaryA = document.createElement('a');
-    militaryA.href = 'military.html';
-    militaryA.textContent = 'Military';
-    militaryLi.appendChild(militaryA);
-
-    // try to find the Contact link to insert before
-    const allLinks = Array.from(sidebarNav.querySelectorAll('a'));
-    let contactLi = null;
-    for (const a of allLinks) {
-      const href = (a.getAttribute('href') || '').trim();
-      if(href.includes('#contact') || (a.textContent || '').trim().toLowerCase() === 'contact') {
-        contactLi = a.parentElement;
-        break;
-      }
-    }
-
-    if(contactLi && contactLi.parentElement === sidebarNav) {
-      sidebarNav.insertBefore(militaryLi, contactLi);
-    } else {
-      // fallback: append to end
-      sidebarNav.appendChild(militaryLi);
-    }
+  function getCurrentFile() {
+    const p = window.location.pathname.split('/').pop();
+    return !p ? 'index.html' : p;
   }
 
-  function openSidebar(){
-    if(!sidebar) return;
+  function normalizeFile(f) {
+    if (!f || f === '/' || f === './') return 'index.html';
+    return f.split('/').pop();
+  }
+
+  function closeProjectsSubmenu() {
+    const projectsToggle = document.getElementById('projectsToggle');
+    const projectsSubmenu = document.getElementById('projects-submenu');
+    const projectsCaret = document.getElementById('projectsCaret');
+    if (!projectsToggle || !projectsSubmenu) return;
+    projectsSubmenu.classList.remove('open');
+    projectsToggle.setAttribute('aria-expanded', 'false');
+    if (projectsCaret) projectsCaret.classList.remove('open');
+  }
+
+  function openSidebar() {
+    if (!sidebar) return;
     sidebar.classList.add('open');
     overlay.classList.add('visible');
-    if(toggle) toggle.setAttribute('aria-expanded','true');
-    const firstLink = sidebar.querySelector('.sidebar-nav a');
-    if(firstLink) firstLink.focus();
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    const firstFocusable = sidebar.querySelector('a, button');
+    if (firstFocusable) firstFocusable.focus();
     document.body.style.overflow = 'hidden';
   }
-  function closeSidebar(){
-    if(!sidebar) return;
+
+  function closeSidebar() {
+    if (!sidebar) return;
     sidebar.classList.remove('open');
     overlay.classList.remove('visible');
-    if(toggle) toggle.setAttribute('aria-expanded','false');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-    if(toggle) toggle.focus();
+    closeProjectsSubmenu();
+    if (toggle) toggle.focus();
   }
 
-  toggle && toggle.addEventListener('click', () => {
-    if(!sidebar) return;
-    if(sidebar.classList.contains('open')) closeSidebar();
-    else openSidebar();
-  });
+  toggle &&
+    toggle.addEventListener('click', () => {
+      if (!sidebar) return;
+      if (sidebar.classList.contains('open')) closeSidebar();
+      else openSidebar();
+    });
 
   closeBtn && closeBtn.addEventListener('click', closeSidebar);
   overlay && overlay.addEventListener('click', closeSidebar);
 
   // Close on Escape
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
+    if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
       closeSidebar();
     }
   });
 
-  // Utility: returns true if current page is the index/home page
-  function onIndexPage(){
-    const p = window.location.pathname.split('/').pop();
-    return p === '' || p === 'index.html' || p === '/';
-  }
-
-  // Handle mixed navigation for anchors pointing to index.html#...:
+  // Smooth-scroll for same-page anchors; close sidebar on small screens for any navigation.
   const navLinks = Array.from(document.querySelectorAll('.sidebar-nav a'));
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       const href = (link.getAttribute('href') || '').trim();
-      const hashIndex = href.indexOf('#');
-      const hasHash = hashIndex !== -1;
-      const linkFile = hasHash ? href.slice(0, hashIndex) : href;
-      const linkHash = hasHash ? href.slice(hashIndex + 1) : '';
+      if (!href) return;
 
-      const isIndexAnchor =
-        hasHash && (linkFile === '' || linkFile === 'index.html' || linkFile === './index.html');
+      // Parse file + hash (supports "#id" and "page.html#id")
+      const parts = href.split('#');
+      const linkFileRaw = parts[0] || '';
+      const linkHash = parts.length > 1 ? parts.slice(1).join('#') : '';
+      const currentFile = normalizeFile(getCurrentFile());
+      const linkFile = normalizeFile(linkFileRaw);
 
-      // If it's an index anchor and we're on the index -> smooth scroll
-      if(isIndexAnchor && onIndexPage()){
-        e.preventDefault();
-        const targetId = linkHash;
-        if(targetId){
-          const target = document.getElementById(targetId);
-          if(target){
-            target.scrollIntoView({behavior:'smooth', block:'start'});
-            history.replaceState(null, '', '#' + targetId);
-          }
+      const isSamePageAnchor =
+        Boolean(linkHash) &&
+        (linkFile === currentFile || href.startsWith('#') || linkFileRaw === '');
+
+      if (isSamePageAnchor) {
+        const target = document.getElementById(linkHash);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', '#' + linkHash);
         }
-        if(window.innerWidth < 900) closeSidebar();
-        return;
       }
 
-      // Otherwise allow normal navigation (new page). For small screens close immediately for UX.
-      if(window.innerWidth < 900) closeSidebar();
+      if (window.innerWidth < DESKTOP_BREAKPOINT) {
+        closeSidebar();
+      }
     });
   });
 
-  // Highlight active links by filename or hash
-  function highlightActiveLink(){
-    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+  // Highlight active links by filename + hash
+  function highlightActiveLink() {
+    const currentFile = normalizeFile(getCurrentFile());
     const currentHash = window.location.hash ? window.location.hash.slice(1) : '';
-    navLinks.forEach(link => {
-      const fullHref = (link.getAttribute('href') || '');
-      const [linkFileRaw, linkHash] = fullHref.split('#');
-      const linkFile = linkFileRaw ? linkFileRaw.split('/').pop() : '';
-      const normalizedLinkFile = (linkFile === '' || linkFile === '/') ? 'index.html' : linkFile;
-      const normalizedCurrent = (currentFile === '' || currentFile === '/') ? 'index.html' : currentFile;
 
-      // If link points to index anchor and we're on index -> match by hash
-      if((normalizedLinkFile === 'index.html' || fullHref.startsWith('#')) && normalizedCurrent === 'index.html' && linkHash){
-        if(linkHash === currentHash) {
-          link.classList.add('active');
-        } else link.classList.remove('active');
+    navLinks.forEach((link) => {
+      const href = (link.getAttribute('href') || '').trim();
+      if (!href) return;
+
+      const parts = href.split('#');
+      const linkFileRaw = parts[0] || '';
+      const linkHash = parts.length > 1 ? parts.slice(1).join('#') : '';
+      const linkFile = normalizeFile(linkFileRaw);
+
+      // Same-page anchor links: match hash
+      if (linkHash && linkFile === currentFile) {
+        link.classList.toggle('active', linkHash === currentHash);
         return;
       }
 
-      // Otherwise match by filename
-      if(normalizedLinkFile === normalizedCurrent && (!linkHash || linkHash === '')) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
+      // Non-anchor page links: match file and only when no hash is active
+      const isPageMatch = linkFile === currentFile && !linkHash;
+      link.classList.toggle('active', isPageMatch && !currentHash);
     });
   }
 
-  // Projects dropdown: toggle behavior and focus handling
-  (function initProjectsDropdown(){
+  // Projects dropdown: toggle behavior + keyboard focus handling
+  (function initProjectsDropdown() {
     const projectsToggle = document.getElementById('projectsToggle');
     const projectsSubmenu = document.getElementById('projects-submenu');
     const projectsCaret = document.getElementById('projectsCaret');
+    if (!projectsToggle || !projectsSubmenu) return;
 
-    if(!projectsToggle || !projectsSubmenu) return;
-
-    // Toggle open/close
-    projectsToggle.addEventListener('click', (e) => {
+    projectsToggle.addEventListener('click', () => {
       const isOpen = projectsToggle.getAttribute('aria-expanded') === 'true';
       projectsToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
       projectsSubmenu.classList.toggle('open', !isOpen);
-      if(projectsCaret) projectsCaret.classList.toggle('open', !isOpen);
+      if (projectsCaret) projectsCaret.classList.toggle('open', !isOpen);
     });
 
-    // Close submenu if focus leaves it (improves keyboard behavior)
+    // Close submenu if focus leaves it (better keyboard UX)
     projectsSubmenu.addEventListener('focusout', function (e) {
-      // relatedTarget is the element receiving focus
       const related = e.relatedTarget;
-      // If focus moved outside of submenu and not to the toggle, close submenu
-      if(!projectsSubmenu.contains(related) && related !== projectsToggle){
-        projectsSubmenu.classList.remove('open');
-        projectsToggle.setAttribute('aria-expanded', 'false');
-        if(projectsCaret) projectsCaret.classList.remove('open');
+      if (!projectsSubmenu.contains(related) && related !== projectsToggle) {
+        closeProjectsSubmenu();
       }
     });
 
-    // When the sidebar closes, ensure submenu closes (handled in closeSidebar)
-    // Also close submenu when a submenu link is clicked (to improve small-screen UX)
+    // Clicking a submenu link should collapse submenu on desktop; sidebar will close on mobile anyway.
     const submenuLinks = Array.from(projectsSubmenu.querySelectorAll('a'));
-    submenuLinks.forEach(a => {
+    submenuLinks.forEach((a) => {
       a.addEventListener('click', () => {
-        // if target is an in-page anchor and we're on that page, allow scrolling then close
-        if(window.innerWidth < 900) {
-          // small screens — close sidebar (this will also close submenu)
-          closeSidebar();
-        } else {
-          // desktop — just close the submenu visually
-          projectsSubmenu.classList.remove('open');
-          projectsToggle.setAttribute('aria-expanded','false');
-          if(projectsCaret) projectsCaret.classList.remove('open');
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) {
+          closeProjectsSubmenu();
         }
       });
     });
   })();
 
-  // On load: handle initial page state (smooth-scroll to hash if present, highlight active link)
   document.addEventListener('DOMContentLoaded', () => {
-    // Ensure Military link is present as early as possible
-    ensureMilitaryLink();
-
-    // If landing on index with hash, smooth-scroll to that section
-    if(onIndexPage() && window.location.hash){
+    // If landing with a hash, smooth-scroll to the section.
+    if (window.location.hash) {
       const id = window.location.hash.slice(1);
       const el = document.getElementById(id);
-      if(el){
-        setTimeout(() => el.scrollIntoView({behavior: 'smooth', block: 'start'}), 80);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+      }
+    }
+
+    // If we're on projects.html with a hash that matches a submenu item, open the submenu.
+    const currentFile = normalizeFile(getCurrentFile());
+    const currentHash = window.location.hash ? window.location.hash.slice(1) : '';
+    if (currentFile === 'projects.html' && currentHash) {
+      const projectsToggle = document.getElementById('projectsToggle');
+      const projectsSubmenu = document.getElementById('projects-submenu');
+      const projectsCaret = document.getElementById('projectsCaret');
+      if (projectsToggle && projectsSubmenu) {
+        const hasMatch = Array.from(projectsSubmenu.querySelectorAll('a')).some((a) => {
+          const h = (a.getAttribute('href') || '').split('#')[1] || '';
+          return h === currentHash;
+        });
+        if (hasMatch) {
+          projectsToggle.setAttribute('aria-expanded', 'true');
+          projectsSubmenu.classList.add('open');
+          if (projectsCaret) projectsCaret.classList.add('open');
+        }
       }
     }
 
     highlightActiveLink();
   });
 
-  // React to hash changes (for index anchors)
   window.addEventListener('hashchange', highlightActiveLink);
 })();
