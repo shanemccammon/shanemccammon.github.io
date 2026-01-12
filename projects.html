@@ -138,23 +138,55 @@
         </article>
       </section>
 
-      <!-- Power Electronics -->
-      <section id="power-electronics" class="container">
-        <h3 id="power-heading">Power Electronics</h3>
-        <p class="description">
-          This was a lab course that followed Intro to Power Electronics: We developed a power conditioning system (buck converter, boost converter and inverter) for an 85W PV panel to charge a 12V deep cycle battery at >85% efficiency. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wound to specification. Please reference the reports for more design and measurement details.
-        </p>
-        <div class="project gallery">
-          <img src="media/buck.png" alt="Power electronics project 1" class="project-image-thumb">
-          <img src="media/boost.jpg" alt="Power electronics project 2" class="project-image-thumb">
-          <img src="media/inverter.jpg" alt="Power electronics project 3" class="project-image-thumb">
-        </div>
-      </section>
+<!-- Power Electronics -->
+<section id="power-electronics" class="container">
+  <h3 id="power-heading">Power Electronics</h3>
+  <p class="description">
+    Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, cascaded boost converter, and inverter) for an 85W PV panel to charge a 12V deep cycle battery and provide 120VAC output. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wrapped to specification.
+  </p>
+
+  <!-- Buck Converter (Experiment 2, Experiment 3 Part 1, Experiment 3 Part 2) -->
+  <article class="project" aria-labelledby="buck-title">
+    <h4 id="buck-title">Buck Converter</h4>
+    <p class="description">
+      Buck converter to step down voltage and limit current for battery charging. Efficiency: 86%
+    </p>
+    <img src="media/buck.png" alt="Buck converter hardware / results" class="project-image-thumb">
+
+    <a href="Experiment2.pdf" target="_blank" rel="noopener" class="button">Initial Measurements</a>
+    <a href="Experiment3_part1.pdf" target="_blank" rel="noopener" class="button">Buck Converter Part 1</a>
+    <a href="Experiement3_part2.pdf" target="_blank" rel="noopener" class="button">Buck Converter Part 2</a>
+  </article>
+
+  <!-- Boost Converter (Experiment 4 Part 1, Experiment 4 Part 2) -->
+  <article class="project" aria-labelledby="boost-title">
+    <h4 id="boost-title">Cascaded Boost Converter</h4>
+    <p class="description">
+      Cascaded boost converter to boost panel voltage 150VDC to feed the inverter circuit. Efficiency: 81%
+    </p>
+    <img src="media/boost.jpg" alt="Boost converter hardware / results" class="project-image-thumb">
+
+    <a href="Experiment4_part1.pdf" target="_blank" rel="noopener" class="button">Boost Converter Part 1</a>
+    <a href="Experiment4_part2.pdf" target="_blank" rel="noopener" class="button">Boost Converter Part 2</a>
+  </article>
+
+  <!-- Inverter (Experiment 5) -->
+  <article class="project" aria-labelledby="inverter-title">
+    <h4 id="inverter-title">Inverter</h4>
+    <p class="description">
+      Inverter stage to recieve 150VDC input and produce 120VRMS output.
+    </p>
+    <img src="media/inverter.jpg" alt="Inverter hardware / results" class="project-image-thumb">
+
+    <a href="Experiment5.pdf" target="_blank" rel="noopener" class="button">Inverter</a>
+  </article>
+</section>
+
 
       <!-- EDL -->
       <section id="edl" class="container">
         <h3 id="edl-heading">Electronics Design Lab</h3>
-        <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PID motor control and other embedded systems features used for the EDL project.</p>
+        <p class="description">In Electronics Design Lab I developed a Bluetooth-controlled rover with custom PI motor control with compensation, wide turning, reverse, 180 degree turns and other embedded systems features such as LED lights.</p>
         <div class="project gallery">
           <img src="media/edl.jpg" alt="EDL project photo 1" class="project-image-thumb">
           <img src="media/edl2.jpg" alt="EDL project photo 2" class="project-image-thumb">
@@ -165,7 +197,7 @@
       <section id="embedded-systems" class="container">
         <h3 id="embedded-heading">Application of Embedded Systems</h3>
         <p class="description">
-          Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts and this project was my first custom [...]
+          Final project: a photoresistive circuit that activates in low-light conditions. This course introduced many embedded system concepts, to include devloping a custom I2C driver, and the final project was also my first custom PCB design.
         </p>
         <div class="project">
           <img src="media/pcb1.jpg" alt="Embedded systems project PCB" class="project-image-thumb">
