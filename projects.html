@@ -132,24 +132,35 @@
         <!-- Board 3 -->
         <article id="board3" class="project" aria-labelledby="board3-title">
           <h4 id="board3-title">Board 3: The "Golden Arduino"</h4>
-          <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies.</p>
+          <p class="description">A custom Arduino-compatible board designed to optimize noise performance and reduce EMI through careful component placement and grounding strategies. Uses ATMega328P bootloaded with Arduino Uno.</p>
           <img src="media/board3.jpg" alt="Board 3 PCB layout" class="resource-thumb project-image-thumb">
           <a href="McCammon_Brd3_Report (1).pdf" target="_blank" rel="noopener" class="button">View Board 3 Report (PDF)</a>
         </article>
+
+        <!-- Board 4 -->
+        <article id="board4" class="project" aria-labelledby="board4-title">
+          <h4 id="board4-title">Board 4: Instrument Droid</h4>
+          <p class="description">
+             A four-layer PCB designed to test and characterize voltage sources and Voltage Regulator Modules (VRMs) as an Arduino shield that can be attached to any Arduino Uno R3
+          </p>
+          <img src="media/board4.jpg" alt="Board 4 PCB layout" class="resource-thumb project-image-thumb">
+          <a href="McCammon_Brd4_Report.pdf" target="_blank" rel="noopener" class="button"> View Board 4 Report (PDF) </a>
+        </article>
+
       </section>
 
 <!-- Power Electronics -->
 <section id="power-electronics" class="container">
   <h3 id="power-heading">Power Electronics</h3>
   <p class="description">
-    Follow-up course to Intro to Power Electronics: developed a power conditioning system (buck converter, cascaded boost converter, and inverter) for an 85W PV panel to charge a 12V deep cycle battery and provide 120VAC output. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wrapped to specification.
+    Follow-up lab course to Intro to Power Electronics: developed a power conditioning system (buck converter, cascaded boost converter, and inverter) for an 85W PV panel to charge a 12V deep cycle battery and provide 120VAC output. The converters operated at 100KHz and contained custom inductors and transformers that were hand-wrapped to specification. Please review lab reports for more specific design and measurement information as well as schematics.
   </p>
 
   <!-- Buck Converter (Experiment 2, Experiment 3 Part 1, Experiment 3 Part 2) -->
   <article class="project" aria-labelledby="buck-title">
     <h4 id="buck-title">Buck Converter</h4>
     <p class="description">
-      Buck converter to step down voltage and limit current for battery charging. Efficiency: 86%
+      Buck converter to step down voltage and limit current and Maximum Power Point Tracking (MPPT) for battery charging. Efficiency: 86%
     </p>
     <img src="media/buck.png" alt="Buck converter hardware / results" class="project-image-thumb">
 
@@ -162,7 +173,7 @@
   <article class="project" aria-labelledby="boost-title">
     <h4 id="boost-title">Cascaded Boost Converter</h4>
     <p class="description">
-      Cascaded boost converter to boost panel voltage 150VDC to feed the inverter circuit. Efficiency: 81%
+      Cascaded boost converter to boost panel voltage to 150VDC to feed the inverter circuit. Efficiency: 81%
     </p>
     <img src="media/boost.jpg" alt="Boost converter hardware / results" class="project-image-thumb">
 
@@ -207,14 +218,14 @@
       <!-- Experimental Physics -->
       <section id="experimental-physics" class="container">
         <h3 id="exp-heading">Experimental Physics</h3>
-        <p class="description">Participated in research on coronal heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason. The related publication is linke[...]</p>
+        <p class="description">Participated in research on coronal heating of the Sun determined by solar flare frequency and distribution led by Dr. James Paul Mason and became a published author. The related publication is linked below.</p>
         <a href="https://iopscience.iop.org/article/10.3847/1538-4357/accc89" target="_blank" rel="noopener" class="button">View Published Paper</a>
       </section>
 
       <!-- Embedded AI -->
       <section id="embedded-ai" class="container">
         <h3 id="ai-heading">Embedded AI</h3>
-        <p class="description">Introductory course on AI for embedded systems: built, trained, and quantized TensorFlow Lite models and explored deployment on microcontrollers. The project repository [...]</p>
+        <p class="description">Introductory course studying AI for embedded systems. We built, trained, and quantized TensorFlow Lite models and explored deployment on microcontrollers. The project repository can be found below.</p>
         <a href="https://github.com/shanemccammon/Embedded-AI.git" target="_blank" rel="noopener" class="button">Embedded AI GitHub Repo</a>
       </section>
 
