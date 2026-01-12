@@ -25,59 +25,18 @@
       <button id="sidebarClose" class="sidebar-close" aria-label="Close navigation">×</button>
       <ul class="sidebar-nav">
         <li><a href="index.html">Home</a></li>
+
+        <!-- Resume: consistent across all pages (opens PDF) -->
         <li><a href="McCammon_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <small>&copy; 2025 Shane McCammon</small>
-      </div>
-    </div>
-  </nav>
 
-  <main>
-    <!-- CHANGED: logos now wrap BOTH About and Contact -->
-    <div class="about-wrapper">
-      <img class="about-logo about-logo-left" src="media/CU.png" alt="CU logo">
+        <!-- Projects dropdown (top-level project headers) -->
+        <li>
+          <button id="projectsToggle" class="projects-toggle" aria-expanded="false" aria-controls="projects-submenu">
+            Projects
+            <span id="projectsCaret" class="caret" aria-hidden="true">▸</span>
+          </button>
 
-      <!-- CHANGED: center column wrapper contains About + Contact -->
-      <div class="about-content">
-
-        <section id="about" class="container">
-          <h2>About Me</h2>
-          <div class="about-layout">
-            <img src="media/profile.jpg" alt="Photo of Shane McCammon" class="profile-photo">
-            <p>
-              I am currently a 4th year undergraduate student studying Electrical and Energy Engineering at the University of Colorado Boulder, graduating in December 2025. Prior to attending University I served in the United States Army for 7 years with a a deployment in support of Operation Inherent Resolve. My engineering interests include, but are not limited to, Radio Frequency (RF) engineering, PCB design and manufacturing, and Power Electronics.
-            </p>
-          </div>
-        </section>
-
-        <!-- CHANGED: Contact moved inside wrapper so logos wrap it too -->
-        <section id="contact" class="container">
-          <h2>Contact</h2>
-          <p>
-            Email: <a href="mailto:shanemccammon.ee@gmail.com">shanemccammon.ee@gmail.com</a>
-          </p>
-          <p>
-            LinkedIn: <a href="https://www.linkedin.com/in/mccammonglen" target="_blank" rel="noopener">www.linkedin.com/in/mccammonglen</a>
-          </p>
-        </section>
-
-      </div>
-
-      <img class="about-logo about-logo-right" src="media/Army.png" alt="Army logo">
-    </div>
-    <!-- CHANGED: removed stray </section> that was here -->
-
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Shane McCammon. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="sidebar.js" defer></script>
-</body>
-</html>
+          <ul id="projects-submenu" class="sidebar-submenu" role="menu" aria-label="Projects list">
+            <li role="none"><a role="menuitem" href="projects.html#capstone">Capstone</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#pcb-design">PCB Design &amp; Manufacturing</a></li>
+            <li role="none"><a role="menuitem" href="projects.html#power-electronics">Power Electronics</a></li>
